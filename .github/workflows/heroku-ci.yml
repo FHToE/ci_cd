@@ -6,9 +6,11 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ develop ]
+    branches: 
+      - 'develop' 
   pull_request:
-    branches: [ develop ]
+    branches:
+      - 'develop'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,5 +30,5 @@ jobs:
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
-          docker_compose_file: '../src/.docker/docker-compose.heroku.yml' # set the path to the folder where the docker-compose file is located
+          docker_compose_file: '../.docker/docker-compose.heroku.yml' # set the path to the folder where the docker-compose file is located
           heroku_apps: '[{"imagename":"postgres","appname":"db-dokazovi","apptype":"web"},{"imagename":"dokazovi","appname":"cicddokazovi","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
