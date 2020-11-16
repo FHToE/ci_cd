@@ -27,7 +27,7 @@ jobs:
           java-version: 1.11
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: Build with Gradle
+      - name: Run test with Gradle
         run: ./gradlew test
       - name: Build the tagged Docker image
         run: docker build -f .docker/dokazovi.Dockerfile -t dokazovi .
