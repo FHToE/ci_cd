@@ -24,20 +24,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
-      # - name: Login to DockerHub Registry
-      #   run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      # - name: Build the tagged Docker image
-      #   run: docker build --build-arg DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} --build-arg DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} --build-arg DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi .
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: Build the tagged Docker image
+        run: docker build --build-arg DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} --build-arg DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} --build-arg DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi .
       - name: Build, Push and Deploy to Heroku
         id: heroku
         uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
-          app_name: ${{ secrets.HEROKU_APP_NAME }}
-          dockerfile_path: '.docker/dokazovi.Dockerfile'
-          options: '--build-arg DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} --build-arg DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} --build-arg DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi' # Docker Build Options
-
-
-          # docker_compose_file: '.docker/docker-compose.heroku.yml' # set the path to the folder where the docker-compose file is located
-          # heroku_apps: '[{"imagename":"dokazovi","appname":"cicddokazovi","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
+          docker_compose_file: '.docker/docker-compose.heroku.yml' # set the path to the folder where the docker-compose file is located
+          heroku_apps: '[{"imagename":"dokazovi","appname":"cicddokazovi","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
