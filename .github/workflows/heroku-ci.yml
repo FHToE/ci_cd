@@ -27,7 +27,7 @@ jobs:
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Build the tagged Docker image
-        run: docker build --build-arg DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} --build-arg DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} --build-arg DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi .
+        run: docker build -e DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} -e DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} -e DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi .
       - name: Build, Push and Deploy to Heroku
         id: heroku
         uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
