@@ -30,7 +30,7 @@ jobs:
         run: docker build --build-arg DATASOURCE_URL=${{ secrets.DATASOURCE_URL }} --build-arg DATASOURCE_USER=${{ secrets.DATASOURCE_USER }} --build-arg DATASOURCE_PASSWORD=${{ secrets.DATASOURCE_PASSWORD }} -f .docker/dokazovi.Dockerfile -t dokazovi .
       - name: Build, Push and Deploy to Heroku
         id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
