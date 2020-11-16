@@ -26,28 +26,20 @@ CREATE TABLE public.users (
   "created_at" TIMESTAMP DEFAULT (now())
 );
 
-ALTER TABLE public.users OWNER TO dokazovi;
-
 CREATE TABLE public.roles (
   "role_id" SERIAL PRIMARY KEY,
   "role_name" varchar
 );
-
-ALTER TABLE public.roles OWNER TO dokazovi;
 
 CREATE TABLE public.roles_users (
   "role_id" int,
   "user_id" int
 );
 
-ALTER TABLE public.roles_users OWNER TO dokazovi;
-
 CREATE TABLE public.regions (
   "region_id" SERIAL PRIMARY KEY,
   "name" varchar
 );
-
-ALTER TABLE public.regions OWNER TO dokazovi;
 
 CREATE TABLE public.institutions (
   "institution_id" SERIAL PRIMARY KEY,
@@ -56,29 +48,21 @@ CREATE TABLE public.institutions (
   "address" varchar
 );
 
-ALTER TABLE public.institutions OWNER TO dokazovi;
-
 CREATE TABLE public.users_institutions (
   "user_id" int,
   "institution_id" int,
   "is_primary" boolean
 );
 
-ALTER TABLE public.users_institutions OWNER TO dokazovi;
-
 CREATE TABLE public.tags (
   "tag_id" SERIAL PRIMARY KEY,
   "tag" varchar
 );
 
-ALTER TABLE public.tags OWNER TO dokazovi;
-
 CREATE TABLE public.posts_tags (
   "post_id" int,
   "tag_id" int
 );
-
-ALTER TABLE public.posts_tags OWNER TO dokazovi;
 
 CREATE TABLE public.posts (
   "post_id" SERIAL PRIMARY KEY,
@@ -94,8 +78,6 @@ CREATE TABLE public.posts (
   "modified_at" TIMESTAMP DEFAULT (now())
 );
 
-ALTER TABLE public.posts OWNER TO dokazovi;
-
 CREATE TABLE public.charities (
   "charity_id" SERIAL PRIMARY KEY,
   "body" text,
@@ -104,57 +86,41 @@ CREATE TABLE public.charities (
   "modified_at" TIMESTAMP DEFAULT (now())
 );
 
-ALTER TABLE public.charities OWNER TO dokazovi;
-
 CREATE TABLE public.sources (
   "source_id" SERIAL PRIMARY KEY,
   "type" varchar,
   "value" varchar
 );
 
-ALTER TABLE public.sources OWNER TO dokazovi;
-
 CREATE TABLE public.users_sources (
   "user_id" int,
   "source_id" int
 );
-
-ALTER TABLE public.users_sources OWNER TO dokazovi;
 
 CREATE TABLE public.posts_sources (
   "post_id" int,
   "source_id" int
 );
 
-ALTER TABLE public.posts_sources OWNER TO dokazovi;
-
 CREATE TABLE public.users_directions (
   "user_id" int,
   "direction_id" int
 );
-
-ALTER TABLE public.users_directions OWNER TO dokazovi;
 
 CREATE TABLE public.directions (
   "direction_id" SERIAL PRIMARY KEY,
   "name" varchar
 );
 
-ALTER TABLE public.directions OWNER TO dokazovi;
-
 CREATE TABLE public.posts_directions (
   "post_id" int,
   "direction_id" int
 );
 
-ALTER TABLE public.posts_directions OWNER TO dokazovi;
-
 CREATE TABLE public.post_types (
   "type_id" SERIAL PRIMARY KEY,
   "name" varchar
 );
-
-ALTER TABLE public.post_types OWNER TO dokazovi;
 
 ALTER TABLE public.roles_users ADD FOREIGN KEY (role_id) REFERENCES public.roles(role_id);
 
