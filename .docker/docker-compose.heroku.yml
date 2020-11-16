@@ -1,29 +1,8 @@
 version: '3'
 
-services:
-  api-db:
-    image: postgres
-    hostname: postgres
-    container_name: 'api-db'
-    ports:
-      - '5432:5432'
-    volumes:
-    - pgdata_api:/var/lib/postgresql/dokazovi_data
-    - pgconf_api:/etc/postgresql
-    - pglog_api:/var/log/postgresql
-    env_file:
-      - .env/api-db.env
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
   api:
     image: dokazovi
     container_name: dokazovi
-    depends_on:
-      - api-db
     ports:
       - '8080:8080'
     env_file:
@@ -33,13 +12,3 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-
-volumes:
-  pgdata_api:
-    driver: local
-  pgconf_api:
-    driver: local
-  pglog_api:
-    driver: local
-  shared:
-    driver: local
