@@ -6,8 +6,6 @@ services:
     container_name: dokazovi
     ports:
       - '8080:8080'
-    env_file:
-      - .env/dokazovi.env
     logging:
       driver: "json-file"
       options:
