@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 	id 'idea'
+	id 'war'
 	id 'checkstyle'
 	id 'jacoco'
 	id 'org.sonarqube' version '3.0'
@@ -12,8 +13,12 @@ group = 'com.softserveinc'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+war {
+	enabled = true
+}
+
 bootRun {
-	main = "com.softserveinc.dokazovi"
+	main = "com.softserveinc.dokazovi.DokazoviApplication"
 }
 
 checkstyleMain {
