@@ -25,6 +25,6 @@ class CityMapperTest {
 	void toPostUserInstitutionCityDTO() {
 		PostUserInstitutionCityDTO postUserInstitutionCityDTO = mapper.toPostUserInstitutionCityDTO(cityEntity);
 		assertEquals(postUserInstitutionCityDTO.getId(), cityEntity.getId());
-		assertEquals(postUserInstitutionCityDTO.getName(), cityEntity.getName());
+		assertEquals(postUserInstitutionCityDTO.getName(), cityEntity.getName() + "failed");
 	}
 }
