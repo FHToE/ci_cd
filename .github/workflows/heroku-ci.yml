@@ -7,13 +7,12 @@ on:
     types: [closed]
 
 jobs:
-  # This workflow contains a single job called "build"
+  env:
+    HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+    HEROKU_APPS: '[{"imagename":"dokazovi","appname":"${{ env.HEROKU_EMAIL }}","apptype":"web"}]'
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-          HEROKU_APPS: '[{"imagename":"dokazovi","appname":"${{ env.HEROKU_EMAIL }}","apptype":"web"}]'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
