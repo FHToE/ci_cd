@@ -12,8 +12,4 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=builder /builder/build/libs/dokazovi-0.0.1-SNAPSHOT.war .
 
-# Add the wait script to the image
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
-RUN chmod +x /wait
-
 ENTRYPOINT [ "java", "-jar", "dokazovi-0.0.1-SNAPSHOT.war" ]
