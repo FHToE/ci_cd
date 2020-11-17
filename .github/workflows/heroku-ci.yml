@@ -30,6 +30,9 @@ jobs:
         env:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
           HEROKU_APPS: '[{"imagename":"dokazovi","appname":"${{ env.HEROKU_EMAIL }}","apptype":"web"}]'
+        run: |
+          echo "HEROKU_EMAIL=$env.HEROKU_EMAIL"
+          echo "HEROKU_APPS=$env.HEROKU_APPS"
         id: heroku
         uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
         with:
